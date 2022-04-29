@@ -1,6 +1,6 @@
-// === imports == //
-express = require('express')
-bodyParser = require('body-parser')
+import express from "express"
+import bodyParser from "body-parser"
+const port = 8000; //mejor a una variable de entorno
 
 
 // === initialisation == //
@@ -10,11 +10,12 @@ app.use(bodyParser.json());
 
 
 // === store == //
-var todoItems = [];
+const todoItems = [];
 todoItems.push({ index: 1, value: "learn react", done: false });
 todoItems.push({ index: 2, value: "Go shopping", done: true });
 todoItems.push({ index: 3, value: "buy flowers", done: true });
-var index = 5;
+
+const index = 5;
 
 
 // === endpoints == //
@@ -38,7 +39,7 @@ app.post('/task', (req, res) => {
 
 // delete a task
 app.delete('/task/:id', (req, res) => {
-    var todoItems = todoItems.filter(d => d.index != +req.params.id)
+    const todoItems = todoItems.filter(d => d.index != +req.params.id)
     return res.json({ data: todoItems, status: 'success' })
 })
 
@@ -48,5 +49,6 @@ app.patch('/task/:id', (req, res) => {
     return res.json({ data: todoItems, status: 'success' })
 })
 
+
 // === run app == //
-app.listen(8000, () => console.log(`Example app running!`))
+app.listen(port, () => console.log(`Example app running!`))
